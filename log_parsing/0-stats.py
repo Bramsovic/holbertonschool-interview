@@ -36,7 +36,7 @@ def parse_line(line):
 
 
 def main():
-    """Process stdin and print metrics after every 10 input lines."""
+    """Process stdin and print metrics after every 10 lines and at EOF."""
     total_size = 0
     line_count = 0
     status_counts = {}
@@ -55,6 +55,9 @@ def main():
 
             if line_count % 10 == 0:
                 print_stats(total_size, status_counts)
+
+        if line_count == 0 or line_count % 10 != 0:
+            print_stats(total_size, status_counts)
     except KeyboardInterrupt:
         print_stats(total_size, status_counts)
         raise
